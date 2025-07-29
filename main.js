@@ -18,6 +18,7 @@ function cardRadioGrid(gridId, inputId, errorId) {
   const input = document.getElementById(inputId);
   const error = errorId && document.getElementById(errorId);
   const clickSound = new Audio('https://cdn.pixabay.com/audio/2022/03/15/audio_115b9d5be7.mp3');
+
   grid.onclick = e => {
     let btn = e.target.closest('.modern-card');
     if (!btn) return;
@@ -33,112 +34,116 @@ function cardRadioGrid(gridId, inputId, errorId) {
     // Sound
     clickSound.currentTime = 0; clickSound.play();
     // Visual
-    grid.querySelectorAll('.modern-card').forEach(el => el.classList.remove('selected', 'card-error'));
+    grid.querySelectorAll('.modern-card').forEach(el => el.classList.remove('selected'));
     btn.classList.add('selected');
     input.value = btn.dataset.name || btn.dataset.value;
-    if (error) error.classList.add('hidden');
+    if (error) error.style.display = 'none';
   }
 }
 cardRadioGrid('nameGrid', 'nameInput', 'nameError');
 cardRadioGrid('personalityGrid', 'personalityInput', 'personalityError');
 cardRadioGrid('logicGrid', 'logicInput', 'logicError');
 
-// ====== Submit, проверки, подсветка незаполненных ======
+// ====== Only show hints if tried submit ======
 const form = document.forms.bandForm;
 const result = document.getElementById('result');
-const submitBtn = document.getElementById('submitBtn');
-const requiredFields = form.querySelectorAll('[required]');
+const main = document.querySelector('main');
 let triedSubmit = false;
 
-function highlightErrors() {
-  // Для обычных input
-  requiredFields.forEach(field => {
-    if (triedSubmit && !field.value.trim()) {
-      field.classList.add('input-error');
-      field.classList.remove('shake-anim');
-      // restart shake animation
-      void field.offsetWidth;
-      field.classList.add('shake-anim');
-    } else {
-      field.classList.remove('input-error', 'shake-anim');
-    }
-  });
-  // Для карточных radio
-  [
-    { grid: 'nameGrid', input: 'nameInput' },
-    { grid: 'personalityGrid', input: 'personalityInput' },
-    { grid: 'logicGrid', input: 'logicInput' }
-  ].forEach(({ grid, input }) => {
-    const val = document.getElementById(input).value;
-    const cards = document.querySelectorAll(`#${grid} .modern-card`);
-    if (triedSubmit && !val) {
-      cards.forEach(card => {
-        card.classList.add('card-error');
-        card.classList.remove('shake-anim');
-        void card.offsetWidth;
-        card.classList.add('shake-anim');
-      });
-    } else {
-      cards.forEach(card => card.classList.remove('card-error', 'shake-anim'));
-    }
-  });
-}
-// сброс ошибок на вводе
-requiredFields.forEach(field => {
-  field.addEventListener('input', () => {
-    field.classList.remove('input-error', 'shake-anim');
-    highlightErrors();
-  });
-});
-['nameGrid','personalityGrid','logicGrid'].forEach(gridId => {
-  document.getElementById(gridId).addEventListener('click', () => {
-    document.querySelectorAll(`#${gridId} .modern-card`).forEach(card => card.classList.remove('card-error', 'shake-anim'));
-    highlightErrors();
-  });
-});
-
-// Проверка валидности для разблокировки кнопки
-function checkFormValidity() {
-  let valid = true;
-  requiredFields.forEach(field => { if (!field.value.trim()) valid = false; });
-  if (!document.getElementById('nameInput').value) valid = false;
-  if (!document.getElementById('personalityInput').value) valid = false;
-  if (!document.getElementById('logicInput').value) valid = false;
-  submitBtn.disabled = !valid;
-  submitBtn.classList.toggle('opacity-60', !valid);
-  submitBtn.classList.toggle('cursor-not-allowed', !valid);
-}
-requiredFields.forEach(field => {
-  field.addEventListener('input', checkFormValidity);
-  field.addEventListener('paste', checkFormValidity);
-});
-['nameInput','personalityInput','logicInput'].forEach(id => {
-  document.getElementById(id).addEventListener('change', checkFormValidity);
-});
-window.addEventListener('DOMContentLoaded', checkFormValidity);
-
-// ====== Обработка отправки ======
 form.onsubmit = e => {
   e.preventDefault();
   triedSubmit = true;
-  highlightErrors();
-  checkFormValidity();
-  // Не отправлять если есть хоть одна ошибка
-  if (
-    form.querySelector('.input-error') ||
-    form.querySelector('.card-error')
-  ) return;
-  // Логика отправки
-  if (form.email && form.email.value) return alert('Spam detected!');
-  form.reset();
-  document.querySelectorAll('.modern-card.selected').forEach(el => el.classList.remove('selected'));
-  document.getElementById('nameInput').value = "";
-  document.getElementById('personalityInput').value = "";
-  document.getElementById('logicInput').value = "";
-  triedSubmit = false; // сброс для следующей попытки
-  checkFormValidity();
-  result.innerHTML = `<div class="bg-green-100 border border-green-300 rounded-xl p-4 text-green-700" style="max-width:450px;margin:auto;animation:popIn .5s;">
-    Спасибо за ответы!<br/>
-  </div>`;
+  let hasError = false;
+
+  // Проверка обычных required input
+  form.querySelectorAll('[required]').forEach(field => {
+    const hint = document.getElementById(field.id + 'Hint');
+    if (!field.value.trim()) {
+      field.classList.add('input-error');
+      if (hint) hint.style.display = 'block';
+      hasError = true;
+    } else {
+      field.classList.remove('input-error');
+      if (hint) hint.style.display = 'none';
+    }
+  });
+
+  // Проверка radio-групп
+  [
+    { grid: 'nameGrid', input: 'nameInput', error: 'nameError', hint: 'Пожалуйста, заполните это поле' },
+    { grid: 'personalityGrid', input: 'personalityInput', error: 'personalityError', hint: 'Пожалуйста, заполните это поле' },
+    { grid: 'logicGrid', input: 'logicInput', error: 'logicError', hint: 'Пожалуйста, заполните это поле' }
+  ].forEach(({ grid, input, error, hint }) => {
+    const val = document.getElementById(input).value;
+    const cards = document.querySelectorAll(`#${grid} .modern-card`);
+    const errorDiv = document.getElementById(error);
+    if (!val) {
+      cards.forEach(card => card.classList.add('card-error'));
+      if (errorDiv) {
+        errorDiv.textContent = hint;
+        errorDiv.style.display = 'block';
+      }
+      hasError = true;
+    } else {
+      cards.forEach(card => card.classList.remove('card-error'));
+      if (errorDiv) errorDiv.style.display = 'none';
+    }
+  });
+
+  // Если есть ошибки — просто подсветить, не отправлять
+  if (hasError) {
+    result.innerHTML = '';
+    return false;
+  }
+
+  // Очищаем main и показываем только сообщение
+  const mainContent = main.innerHTML;
+  main.innerHTML = `
+    <div id="thankyou" class="flex flex-col items-center justify-center min-h-[350px]">
+      <div class="bg-green-100 border border-green-300 rounded-xl p-6 text-green-700 text-center text-xl font-bold animate-popIn" style="max-width:450px;margin:auto;">
+        Спасибо за участие!
+      </div>
+    </div>
+  `;
+
+  // Через 2 секунды возвращаем форму очищенной
+  setTimeout(() => {
+    main.innerHTML = mainContent;
+    // Сброс всех выделений карточек
+    document.querySelectorAll('.modern-card.selected').forEach(el => el.classList.remove('selected'));
+    ['nameInput','personalityInput','logicInput'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = "";
+    });
+    form.reset();
+    triedSubmit = false;
+    // Перезапускаем события (для вновь вставленного main содержимого)
+    cardRadioGrid('nameGrid', 'nameInput', 'nameError');
+    cardRadioGrid('personalityGrid', 'personalityInput', 'personalityError');
+    cardRadioGrid('logicGrid', 'logicInput', 'logicError');
+  }, 2000);
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
+
+// ====== Убрать ошибку после исправления (input) ======
+form.querySelectorAll('[required]').forEach(field => {
+  field.addEventListener('input', () => {
+    if (!triedSubmit) return;
+    if (field.value.trim()) {
+      field.classList.remove('input-error');
+      const hint = document.getElementById(field.id + 'Hint');
+      if (hint) hint.style.display = 'none';
+    }
+  });
+});
+
+// ====== Убрать ошибку после выбора карточки ======
+['nameGrid','personalityGrid','logicGrid'].forEach((gridId, i) => {
+  document.getElementById(gridId).addEventListener('click', () => {
+    if (!triedSubmit) return;
+    document.querySelectorAll(`#${gridId} .modern-card`).forEach(card => card.classList.remove('card-error'));
+    let errDiv = document.getElementById(['nameError','personalityError','logicError'][i]);
+    if (errDiv) errDiv.style.display = 'none';
+  });
+});
