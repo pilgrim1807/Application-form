@@ -1,233 +1,245 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Анкета для участников 2/5</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Анкета для участников 2/5</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="img/concert.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="img/concert.png" />
-  <meta name="theme-color" content="#111827" />
+    <!-- Favicon -->
+    <link rel="icon" href="img/concert.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="img/concert.png" />
+    <meta name="theme-color" content="#111827" />
 
-  <!-- Styles -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css" />
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- SEO -->
-  <meta name="description" content="Закрытая анкета для участников музыкальной группы Две Пятых — про характер, музыку и фан-взаимодействие." />
-  <meta name="author" content="2/5 Band Team" />
+    <!-- SEO -->
+    <meta name="description"
+        content="Закрытая анкета для участников музыкальной группы Две Пятых — про характер, музыку и фан-взаимодействие." />
+    <meta name="author" content="2/5 Band Team" />
 
-  <!-- Open Graph / соцсети -->
-  <meta property="og:title" content="Анкета для участников 2/5" />
-  <meta property="og:description" content="Закрытая анкета для участников музыкальной группы Две Пятых." />
-  <meta property="og:image" content="img/concert.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="ru_RU" />
+    <!-- Open Graph / соцсети -->
+    <meta property="og:title" content="Анкета для участников 2/5" />
+    <meta property="og:description" content="Закрытая анкета для участников музыкальной группы Две Пятых." />
+    <meta property="og:image" content="img/concert.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
 </head>
 
 <body class="min-h-screen flex flex-col items-center py-4 transition-colors duration-300">
-  <main class="w-full max-w-xl mx-auto rounded-2xl shadow-lg p-6" aria-labelledby="form-title">
-    <header class="flex justify-between items-center mb-3">
-      <h1 id="form-title" class="text-3xl font-bold text-center flex-1">Анкета участников 2/5</h1>
-      <button id="toggleTheme" class="transition select-none" aria-label="Переключить тему">🌙/☀️</button>
-    </header>
-    <form name="bandForm" method="POST" data-netlify="true" netlify-honeypot="email" autocomplete="off">
-      <input type="hidden" name="form-name" value="bandForm" />
+    <main class="w-full max-w-xl mx-auto rounded-2xl shadow-lg p-6" aria-labelledby="form-title">
+        <header class="flex justify-between items-center mb-3">
+            <h1 id="form-title" class="text-3xl font-bold text-center flex-1">Анкета участников 2/5</h1>
+            <button id="toggleTheme" class="transition select-none" aria-label="Переключить тему">🌙/☀️</button>
+        </header>
+        <form name="bandForm" method="POST" data-netlify="true" netlify-honeypot="email" autocomplete="off">
+            <input type="hidden" name="form-name" value="bandForm" />
 
-      <!-- Выбери себя -->
-      <fieldset class="mb-3 border-0 p-0">
-        <legend class="font-medium mb-2">Выбери себя:</legend>
-        <div id="nameGrid" class="modern-cards-grid" role="radiogroup" aria-label="Выбор участника">
-          <button type="button" class="modern-card" data-name="Соня" aria-pressed="false" tabindex="0">
-            <span class="modern-card-icon">🎤</span>
-            <span class="modern-card-label">Соня</span>
-          </button>
-          <button type="button" class="modern-card" data-name="Воваха" aria-pressed="false" tabindex="0">
-            <span class="modern-card-icon">🎸</span>
-            <span class="modern-card-label">Воваха</span>
-          </button>
-          <button type="button" class="modern-card" data-name="Валера" aria-pressed="false" tabindex="0">
-            <span class="modern-card-icon">⚡</span>
-            <span class="modern-card-label">Валера</span>
-          </button>
-          <button type="button" class="modern-card" data-name="Андрей" aria-pressed="false" tabindex="0">
-            <span class="modern-card-icon">🎸</span>
-            <span class="modern-card-label">Андрей</span>
-          </button>
-          <button type="button" class="modern-card" data-name="Сергей" aria-pressed="false" tabindex="0">
-            <span class="modern-card-icon">🥁</span>
-            <span class="modern-card-label">Сергей</span>
-          </button>
-          <button type="button" class="modern-card" data-name="Настя" aria-pressed="false" tabindex="0">
-            <span class="modern-card-icon">🎹</span>
-            <span class="modern-card-label">Настя</span>
-          </button>
-        </div>
-        <input type="hidden" name="name" id="nameInput" required>
-        <div id="nameError" class="text-pink-500 text-xs mt-1 hidden">Выбери участника!</div>
-      </fieldset>
+            <!-- Выбери себя -->
+            <fieldset class="mb-3 border-0 p-0">
+                <legend class="font-medium mb-2">Выбери себя:</legend>
+                <div id="nameGrid" class="modern-cards-grid" role="radiogroup" aria-label="Выбор участника">
+                    <button type="button" class="modern-card" data-name="Соня" aria-pressed="false" tabindex="0">
+                        <span class="modern-card-icon">🎤</span>
+                        <span class="modern-card-label">Соня</span>
+                    </button>
+                    <button type="button" class="modern-card" data-name="Воваха" aria-pressed="false" tabindex="0">
+                        <span class="modern-card-icon">🎸</span>
+                        <span class="modern-card-label">Воваха</span>
+                    </button>
+                    <button type="button" class="modern-card" data-name="Валера" aria-pressed="false" tabindex="0">
+                        <span class="modern-card-icon">⚡</span>
+                        <span class="modern-card-label">Валера</span>
+                    </button>
+                    <button type="button" class="modern-card" data-name="Андрей" aria-pressed="false" tabindex="0">
+                        <span class="modern-card-icon">🎸</span>
+                        <span class="modern-card-label">Андрей</span>
+                    </button>
+                    <button type="button" class="modern-card" data-name="Сергей" aria-pressed="false" tabindex="0">
+                        <span class="modern-card-icon">🥁</span>
+                        <span class="modern-card-label">Сергей</span>
+                    </button>
+                    <button type="button" class="modern-card" data-name="Настя" aria-pressed="false" tabindex="0">
+                        <span class="modern-card-icon">🎹</span>
+                        <span class="modern-card-label">Настя</span>
+                    </button>
+                </div>
+                <input type="hidden" name="name" id="nameInput" required>
+                <div id="nameError" class="text-pink-500 text-xs mt-1 hidden">Выбери участника!</div>
+            </fieldset>
 
-      <!-- 1. Общие черты -->
-      <fieldset class="space-y-3 border-0 p-0">
-        <legend class="text-xl font-semibold mb-1 text-pink-400">🎭 1. Тип личности</legend>
-        <input name="traits" class="modern-input" placeholder="Коротко, расскажи о себе главное." required />
-        <input name="superpower" class="modern-input" placeholder="Каую ты бы хотел суперспособность?" required />
+           
+            <!-- 1. Общие черты -->
+            <fieldset class="space-y-3 border-0 p-0">
+                <legend class="text-xl font-semibold mb-1 text-pink-400">🎭 1. Тип личности</legend>
 
-        <fieldset class="modern-cards-fieldset border-0 p-0">
-          <legend class="block font-medium mb-2 text-white">Ты интроверт, экстраверт или амбиверт?</legend>
-          <div id="personalityGrid" class="modern-cards-grid" role="radiogroup" aria-label="Тип личности">
-            <button type="button" class="modern-card animate-card" data-value="Интроверт"><span class="modern-card-icon">😶</span><span class="modern-card-label">Интроверт</span></button>
-            <button type="button" class="modern-card animate-card" data-value="Экстраверт"><span class="modern-card-icon">😄</span><span class="modern-card-label">Экстраверт</span></button>
-            <button type="button" class="modern-card animate-card" data-value="Амбиверт"><span class="modern-card-icon">🌓</span><span class="modern-card-label">Амбиверт</span></button>
-          </div>
-          <input type="hidden" name="personality" id="personalityInput" required>
-          <div id="personalityError" class="text-pink-500 text-xs mt-1 hidden">Выбери тип личности!</div>
-        </fieldset>
-        <input name="annoyedBy" class="modern-input" placeholder="Что тебя раздражает?" required />
-        <input name="inspiredBy" class="modern-input" placeholder="Что тебя вдохновляет?" required />
+                <label class="block font-medium mb-1" for="traits">Три слова о себе</label>
+                <input name="traits" id="traits" class="modern-input" placeholder="Спокойный, честный, добрый"
+                    required />
 
-        <fieldset class="modern-cards-fieldset border-0 p-0">
-          <legend class="block font-medium mb-2 text-white">Ты чаще полагаешься на разум или чувства?</legend>
-          <div id="logicGrid" class="modern-cards-grid" role="radiogroup" aria-label="Разум или чувства">
-            <button type="button" class="modern-card animate-card" data-value="Разум"><span class="modern-card-icon">🧠</span><span class="modern-card-label">Разум</span></button>
-            <button type="button" class="modern-card animate-card" data-value="Чувства"><span class="modern-card-icon">❤️</span><span class="modern-card-label">Чувства</span></button>
-          </div>
-          <input type="hidden" name="logicType" id="logicInput" required>
-          <div id="logicError" class="text-pink-500 text-xs mt-1 hidden">Выбери!</div>
-        </fieldset>
-        <input name="priority" class="modern-input" placeholder="Что для тебя важнее: стабильность или спонтанность?" required />
-        <input name="admire" class="modern-input" placeholder="Что ценишь в других?" required />
-        <input name="movieHero" class="modern-input" placeholder="С каким персонажем ты себя ассоциируешь? И почему?" required />
-      </fieldset>
+                <label class="block font-medium mb-1" for="superpower">Какую ты бы хотел суперспособность?</label>
+                <input name="superpower" id="superpower" class="modern-input" placeholder="Летать" required />
 
-      <!-- 2. Уникальные особенности -->
-      <fieldset class="space-y-3 border-0 p-0">
-        <legend class="text-xl font-semibold mb-1 text-pink-400">🧬 2. Уникальные особенности</legend>
-        <input name="catchphrase" class="modern-input" placeholder="Какой твой лбимый мем или фраза" required />
-        <input name="weirdFact" class="modern-input" placeholder="Напиши какой-нибудь странный факт о себе" required />
-        <input name="habit" class="modern-input" placeholder="Опиши, какая у тебя уникальная привычка" required />
-        <input name="musicGenre" class="modern-input" placeholder="Какой ты жанр музыки?" required />
-        <input name="ritual" class="modern-input" placeholder="Есть ли у тебя личный ритуал, который ты делашь перед концертом? Какой?" required />
-        <input name="onTour" class="modern-input" placeholder="Что берёшь в тур?" required />
-        <input name="nickname" class="modern-input" placeholder="Твоё прозвище в группе?" required />
-      </fieldset>
+                <fieldset class="modern-cards-fieldset border-0 p-0">
+                    <legend class="block font-medium mb-2 text-white">Ты интроверт, экстраверт или амбиверт?</legend>
+                    <div id="personalityGrid" class="modern-cards-grid" role="radiogroup" aria-label="Тип личности">
+                        <button type="button" class="modern-card animate-card" data-value="Интроверт"><span
+                                class="modern-card-icon">😶</span><span
+                                class="modern-card-label">Интроверт</span></button>
+                        <button type="button" class="modern-card animate-card" data-value="Экстраверт"><span
+                                class="modern-card-icon">😄</span><span
+                                class="modern-card-label">Экстраверт</span></button>
+                        <button type="button" class="modern-card animate-card" data-value="Амбиверт"><span
+                                class="modern-card-icon">🌓</span><span
+                                class="modern-card-label">Амбиверт</span></button>
+                    </div>
+                    <input type="hidden" name="personality" id="personalityInput" required>
+                    <div id="personalityError" class="text-pink-500 text-xs mt-1 hidden">Выбери тип личности!</div>
+                </fieldset>
 
-      <!-- 3. Отношение к музыке -->
-      <fieldset class="space-y-3 border-0 p-0">
-        <legend class="text-xl font-semibold mb-1 text-pink-400">🎶 3. Музыка</legend>
-        <input name="loveMusic" class="modern-input" placeholder="За что любишь музыку?" required />
-        <input name="importantPerf" class="modern-input" placeholder="Что для тебя главное в выступлениях?" required />
-        <input name="favSong" class="modern-input" placeholder="Твоя песня группы?" required />
-        <input name="writeMusic" class="modern-input" placeholder="Как пишешь музыку?" required />
-        <input name="soundWords" class="modern-input" placeholder="Три слова про вашу группу" required />
-        <input name="shock" class="modern-input" placeholder="Твой музыкальный шок?" required />
-      </fieldset>
+                <label class="block font-medium mb-1" for="annoyedBy">Что тебя раздражает?</label>
+                <input name="annoyedBy" id="annoyedBy" class="modern-input" placeholder="Очереди, спешка" required />
 
-      <!-- 4. Соцсети -->
-      <fieldset class="space-y-3 border-0 p-0">
-        <legend class="text-xl font-semibold mb-1 text-pink-400">📱 4. Жизнь в соцсетях</legend>
-        <input name="socials" class="modern-input" placeholder="Какие соц-сети ты ведешь?" required />
-        <input name="contentType" class="modern-input" placeholder="Какой контент тебе больше всего нравится публиковать?" required />
-        <input name="socialCard" class="modern-input" placeholder="Какая твоя “визитная карточка” в соцсетях? (мемы, сторис, гитарные соло и т.д.") required />
-        <input name="storyType" class="modern-input" placeholder="Кто ты в сторис: наблюдатель, шутник, поэт или инфлюенсер?" required />
-        <input name="likedPost" class="modern-input" placeholder="О чём твой самый залайканный пост?" required />
-      </fieldset>
+                <label class="block font-medium mb-1" for="inspiredBy">Что тебя вдохновляет?</label>
+                <input name="inspiredBy" id="inspiredBy" class="modern-input" placeholder="Новые идеи" required />
 
-      <!-- 5. Фаны -->
-      <fieldset class="space-y-3 border-0 p-0">
-        <legend class="text-xl font-semibold mb-1 text-pink-400">🤝 5. Фан-взаимодействие</legend>
-        <input name="fanQuestion" class="modern-input" placeholder="Вопросы от фанов?" required />
-        <input name="fanReply" class="modern-input" placeholder="Что отвечаешь фанам?" required />
-        <input name="fanart" class="modern-input" placeholder="Отношение к фан-артам?" required />
-        <input name="feltLove" class="modern-input" placeholder="Когда почувствовал любовь фанов?" required />
-        <input name="toNewFan" class="modern-input" placeholder="Что скажешь новому слушателю?" required />
-      </fieldset>
+                <fieldset class="modern-cards-fieldset border-0 p-0">
+                    <legend class="block font-medium mb-2 text-white">Ты чаще полагаешься на разум или чувства?</legend>
+                    <div id="logicGrid" class="modern-cards-grid" role="radiogroup" aria-label="Разум или чувства">
+                        <button type="button" class="modern-card animate-card" data-value="Разум"><span
+                                class="modern-card-icon">🧠</span><span class="modern-card-label">Разум</span></button>
+                        <button type="button" class="modern-card animate-card" data-value="Чувства"><span
+                                class="modern-card-icon">❤️</span><span
+                                class="modern-card-label">Чувства</span></button>
+                    </div>
+                    <input type="hidden" name="logicType" id="logicInput" required>
+                    <div id="logicError" class="text-pink-500 text-xs mt-1 hidden">Выбери!</div>
+                </fieldset>
 
-      <!-- 6. Фан-тестовый блок -->
-      <fieldset class="space-y-4 bg-pink-50/50 dark:bg-[#271722]/80 rounded-xl px-4 py-4 shadow-sm border border-pink-200 dark:border-pink-900">
-        <legend class="text-xl font-semibold mb-2 text-pink-700 dark:text-pink-300 flex items-center gap-2">
-          ✨ 6. Фан-тестовый блок
-          <span class="inline-flex items-center px-2 py-1 text-xs font-semibold bg-pink-200 dark:bg-pink-900 text-pink-900 dark:text-pink-100 rounded-full ml-2 animate-pulse">архетип</span>
-        </legend>
-        
-        <!-- Описание результата -->
-        <div class="relative group mb-2">
-          <label for="testResult" class="block font-medium mb-1 dark:text-white">
-            Опиши человека, которому выпадешь в тесте. Какой он?
-          </label>
-          <input id="testResult" name="testResult"
-            class="modern-input bg-black/90 dark:bg-black text-white"
-            placeholder="Спокоен, креативен, честен" required autocomplete="off" />
-          <span class="input-hint group-focus-within:opacity-100 text-pink-600 dark:text-pink-300">
-            👉 Опиши свой “архетип” — коротко и ёмко.
-          </span>
-        </div>
-        
-        <!-- Фраза-предложение -->
-        <div class="relative group mb-2">
-          <label for="finishPhrase" class="block font-medium mb-1 dark:text-white">
-            Продолжи: <span class="italic">“Ты похож на меня, если ты...”</span>
-          </label>
-          <input id="finishPhrase" name="finishPhrase"
-            class="modern-input bg-black/90 dark:bg-black text-white"
-            placeholder="...любишь тишину и новые идеи" required autocomplete="off"/>
-          <span class="input-hint group-focus-within:opacity-100 text-pink-600 dark:text-pink-300">
-            👉 В одно-два предложения.
-          </span>
-        </div>
-      
-        <!-- Ощущение результата -->
-        <div class="relative group mb-2">
-          <label for="testFeeling" class="block font-medium mb-1 dark:text-white">
-            Что почувствует человек, если в результате теста выпадешь ты?
-          </label>
-          <input id="testFeeling" name="testFeeling"
-            class="modern-input bg-black/90 dark:bg-black text-white"
-            placeholder="Поняли, как друг в музыке" required autocomplete="off"/>
-          <span class="input-hint group-focus-within:opacity-100 text-pink-600 dark:text-pink-300">
-            👉 Эмоции, ощущения, реакция.
-          </span>
-        </div>
-      
-        <!-- Мем/гиф -->
-        <div class="relative group mb-2">
-          <label for="meme" class="block font-medium mb-1 dark:text-white">
-            Какой ты мем, гиф или сцена из кино?
-          </label>
-          <input id="meme" name="meme"
-            class="modern-input bg-black/90 dark:bg-black text-white"
-            placeholder="Танцующий Travolta" required autocomplete="off"/>
-        </div>
-        
-        <!-- “Энергия” одним словом -->
-        <div class="relative group mb-2">
-          <label for="energyWord" class="block font-medium mb-1 dark:text-white">
-            Опиши свою “энергию” одним словом
-          </label>
-          <input id="energyWord" name="energyWord"
-            class="modern-input bg-black/90 dark:bg-black text-white"
-            placeholder="Вулкан" required autocomplete="off"/>
-        </div>
-      
-        <!-- День недели -->
-        <div class="relative group">
-          <label for="weekDay" class="block font-medium mb-1 dark:text-white">
-            Какой ты день недели и почему?
-          </label>
-          <input id="weekDay" name="weekDay"
-            class="modern-input bg-black/90 dark:bg-black text-white"
-            placeholder="Пятница — баланс" required autocomplete="off"/>
-        </div>
-      </fieldset>  
-      
-      <button type="submit" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-xl text-lg font-bold transition">Отправить</button>
-    </form>
-    <div id="result" class="mt-6"></div>
-  </main>
-  <script src="main.js"></script>
-  <footer class="text-xs text-center mt-6 text-gray-500">
-    <p>Анкета для создания теста "Кто ты из 2/5?"</p>
-  </footer>
+                <label class="block font-medium mb-1" for="priority">Что для тебя важнее: стабильность или
+                    спонтанность?</label>
+                <input name="priority" id="priority" class="modern-input" placeholder="Стабильность" required />
+
+                <label class="block font-medium mb-1" for="admire">Что ценишь в других?</label>
+                <input name="admire" id="admire" class="modern-input" placeholder="Честность" required />
+
+                <label class="block font-medium mb-1" for="movieHero">С каким персонажем ты себя ассоциируешь?
+                    Почему?</label>
+                <input name="movieHero" id="movieHero" class="modern-input" placeholder="Шерлок — за логику" required />
+            </fieldset>
+
+            <!-- 2. Уникальные особенности -->
+            <fieldset class="space-y-3 border-0 p-0">
+                <legend class="text-xl font-semibold mb-1 text-pink-400">🧬 2. Уникальные особенности</legend>
+
+                <label class="block font-medium mb-1" for="catchphrase">Твой любимый мем или фраза?</label>
+                <input name="catchphrase" id="catchphrase" class="modern-input" placeholder="Кринж!" required />
+
+                <label class="block font-medium mb-1" for="weirdFact">Странный факт о себе</label>
+                <input name="weirdFact" id="weirdFact" class="modern-input" placeholder="Говорю с кошкой" required />
+
+                <label class="block font-medium mb-1" for="habit">Твоя уникальная привычка</label>
+                <input name="habit" id="habit" class="modern-input" placeholder="Пою в душе" required />
+
+                <label class="block font-medium mb-1" for="musicGenre">Какой ты жанр музыки?</label>
+                <input name="musicGenre" id="musicGenre" class="modern-input" placeholder="Инди-поп" required />
+
+                <label class="block font-medium mb-1" for="ritual">Ритуал перед концертом?</label>
+                <input name="ritual" id="ritual" class="modern-input" placeholder="Прыгать 3 раза" required />
+
+                <label class="block font-medium mb-1" for="onTour">Что берёшь в тур?</label>
+                <input name="onTour" id="onTour" class="modern-input" placeholder="Ушные беруши" required />
+
+                <label class="block font-medium mb-1" for="nickname">Твоё прозвище в группе?</label>
+                <input name="nickname" id="nickname" class="modern-input" placeholder="Метеор" required />
+            </fieldset>
+
+
+            <!-- 6. Фан-тестовый блок -->
+            <fieldset
+                class="space-y-4 bg-pink-50/50 dark:bg-[#271722]/80 rounded-xl px-4 py-4 shadow-sm border border-pink-200 dark:border-pink-900">
+                <legend class="text-xl font-semibold mb-2 text-pink-700 dark:text-pink-300 flex items-center gap-2">
+                    ✨ 6. Фан-тестовый блок
+                    <span
+                        class="inline-flex items-center px-2 py-1 text-xs font-semibold bg-pink-200 dark:bg-pink-900 text-pink-900 dark:text-pink-100 rounded-full ml-2 animate-pulse">архетип</span>
+                </legend>
+
+                <!-- Описание результата -->
+                <div class="relative group mb-2">
+                    <label for="testResult" class="block font-medium mb-1 dark:text-white">
+                        Опиши человека, которому выпадешь в тесте. Какой он?
+                    </label>
+                    <input id="testResult" name="testResult" class="modern-input bg-black/90 dark:bg-black text-white"
+                        placeholder="Спокоен, креативен, честен" required autocomplete="off" />
+                    <span class="input-hint group-focus-within:opacity-100 text-pink-600 dark:text-pink-300">
+                        👉 Опиши свой “архетип” — коротко и ёмко.
+                    </span>
+                </div>
+
+                <!-- Фраза-предложение -->
+                <div class="relative group mb-2">
+                    <label for="finishPhrase" class="block font-medium mb-1 dark:text-white">
+                        Продолжи: <span class="italic">“Ты похож на меня, если ты...”</span>
+                    </label>
+                    <input id="finishPhrase" name="finishPhrase"
+                        class="modern-input bg-black/90 dark:bg-black text-white"
+                        placeholder="...любишь тишину и новые идеи" required autocomplete="off" />
+                    <span class="input-hint group-focus-within:opacity-100 text-pink-600 dark:text-pink-300">
+                        👉 В одно-два предложения.
+                    </span>
+                </div>
+
+                <!-- Ощущение результата -->
+                <div class="relative group mb-2">
+                    <label for="testFeeling" class="block font-medium mb-1 dark:text-white">
+                        Что почувствует человек, если в результате теста выпадешь ты?
+                    </label>
+                    <input id="testFeeling" name="testFeeling" class="modern-input bg-black/90 dark:bg-black text-white"
+                        placeholder="Поняли, как друг в музыке" required autocomplete="off" />
+                    <span class="input-hint group-focus-within:opacity-100 text-pink-600 dark:text-pink-300">
+                        👉 Эмоции, ощущения, реакция.
+                    </span>
+                </div>
+
+                <!-- Мем/гиф -->
+                <div class="relative group mb-2">
+                    <label for="meme" class="block font-medium mb-1 dark:text-white">
+                        Какой ты мем, гиф или сцена из кино?
+                    </label>
+                    <input id="meme" name="meme" class="modern-input bg-black/90 dark:bg-black text-white"
+                        placeholder="Танцующий Travolta" required autocomplete="off" />
+                </div>
+
+                <!-- “Энергия” одним словом -->
+                <div class="relative group mb-2">
+                    <label for="energyWord" class="block font-medium mb-1 dark:text-white">
+                        Опиши свою “энергию” одним словом
+                    </label>
+                    <input id="energyWord" name="energyWord" class="modern-input bg-black/90 dark:bg-black text-white"
+                        placeholder="Вулкан" required autocomplete="off" />
+                </div>
+
+                <!-- День недели -->
+                <div class="relative group">
+                    <label for="weekDay" class="block font-medium mb-1 dark:text-white">
+                        Какой ты день недели и почему?
+                    </label>
+                    <input id="weekDay" name="weekDay" class="modern-input bg-black/90 dark:bg-black text-white"
+                        placeholder="Пятница — баланс" required autocomplete="off" />
+                </div>
+            </fieldset>
+
+            <button type="submit"
+                class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-xl text-lg font-bold transition">Отправить</button>
+        </form>
+        <div id="result" class="mt-6"></div>
+    </main>
+    <script src="main.js"></script>
+    <footer class="text-xs text-center mt-6 text-gray-500">
+        <p>Анкета для создания теста "Кто ты из 2/5?"</p>
+    </footer>
 </body>
+
 </html>

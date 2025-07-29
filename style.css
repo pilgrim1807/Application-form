@@ -224,18 +224,25 @@
     100% { transform: scale(1); opacity:1;}
   }
   
-  /* Theme button animation */
   #toggleTheme {
-    transition: transform .32s cubic-bezier(.36,1.4,.41,1);
+    transition: transform 0.32s cubic-bezier(.36,1.4,.41,1);
     cursor: pointer;
     user-select: none;
+    outline: none;
   }
   #toggleTheme.clicked {
-    animation: spinScale .44s cubic-bezier(.36,1.4,.41,1);
+    animation: bounceSquash 0.55s cubic-bezier(.29,1.56,.45,1.11);
   }
-  @keyframes spinScale {
-    10% { transform: rotate(0) scale(1);}
-    70% { transform: rotate(220deg) scale(1.2);}
-    100% { transform: rotate(360deg) scale(1);}
+  @keyframes bounceSquash {
+    0%   { transform: scale(1,1) translateY(0);}
+    18%  { transform: scale(1.2,0.8) translateY(4px);}
+    35%  { transform: scale(0.82,1.18) translateY(-18px);}
+    55%  { transform: scale(1.11,0.91) translateY(7px);}
+    75%  { transform: scale(0.96,1.04) translateY(-2px);}
+    100% { transform: scale(1,1) translateY(0);}
   }
+  #toggleTheme:active {
+    transform: scale(0.93,0.98);
+  }
+  
   
