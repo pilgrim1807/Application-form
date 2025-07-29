@@ -70,6 +70,64 @@ textarea::placeholder {
     opacity: 1;
 }
 
+/* Центрируем все подписи и заголовки */
+fieldset, legend, label, .input-hint-error, .input-hint, .modern-card-label, .modern-card-desc {
+    text-align: center !important;
+}
+
+/* Центрируем ошибки, превью и кнопки удаления */
+#nameError, #personalityError, #logicError, #catchphraseImageHint,
+#catchphraseImagePreview, .input-hint-error {
+    text-align: center !important;
+    justify-content: center;
+    align-items: center;
+    display: block;
+    width: 100%;
+}
+
+/* Центрировать все modern-cards-grid, даже на мобильном */
+.modern-cards-grid {
+    justify-content: center !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Паддинги для fieldset (блок вопросов) */
+fieldset {
+    padding-top: 2.5rem !important;  /* py-10 */
+    padding-bottom: 2.5rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 1.5rem !important;
+    border: none !important;
+    width: 100%;
+}
+
+/* Для меньших экранов можно уменьшить */
+@media (max-width: 640px) {
+    fieldset {
+        padding-top: 1.2rem !important; /* py-5 */
+        padding-bottom: 1.2rem !important;
+    }
+}
+
+/* Дополнительный стиль для превью картинки */
+#catchphraseImagePreview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Для кнопки "Загрузить картинку" — всегда по центру */
+label[for="catchphraseImage"] {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+
 .modern-input {
     width: 100%;
     padding: 0.83rem 1.05rem;
