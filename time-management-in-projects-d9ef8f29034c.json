@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "time-management-in-projects",
+  "private_key_id": "d9ef8f29034c129f4cf3d85fafb4b5b960e67fc1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCg7ElPom/OrnIp\no/GSWjApGLPSEUej0yeGML7kZfp715cR9lBPLlcGK/hc1gI0jPc2wpp5qeqTbIiC\n3WBF5Yt1WhptfhO/rukhygoIh1p4KmbTuGwK+VDefmwxgQaWwLwY/fYBhV50xano\nMG/Xy0Ba3t2oVtZq6eKpCQA1oSF0/0nL5uBireoeMHGWH/MKpvXlj6JJmUZEFLnY\nMOhVWh4ElsmmlCVCWCHYYYxVC1620h54p8iYyGQ91Gs18J2j20w0xgvkn9/SOjz6\n9o1YUrcrUzaz4QaHwlesfs6f/rSvye2qAb4gsD/cg6SZ3ntAO3xMsMPRaYM6EqQr\nTTjBfM6ZAgMBAAECggEADJYurcHgyOOwHj2qeW4AclZySi370n6DiuVpKOgpDWKx\neEAxy9+uAteRl4FNrtqPw4K5HmcB6AIHM2UpUI5BuC4R/xprZQTDS1dILZ6YnumC\nHXFBUiJqBt0QjVawMz5j9/h1M21BFBUZ0wVm2hQVtoXUBIS2RKqChgIkOA2gVkw5\nmm16yXkL2t/1D2p4glYVUZ5tRRN1BzN5lmpw2RQUOeEjORINIE1IgpKDtHbKFKYI\n5p46uIlMryZXEVVvSBQJo6mSL2mpCIXBGdf014VK3fwXm0oNSU+mOa/s20U0gZP+\neqULUrw8t0pfdGqM/hQX1sCU+flPH3iYr6Nh8QunAQKBgQDbb7Jeoh5tnnaKh4br\n+xnPki1OaDbxDBMp9e6QjobvddpDxZ/rMtOHMacwy26XVc4k/IU+H3Q6ysVtIYcM\nNK086a07RD2541I2+YwLujPZqdCctUDc0Jq0vzeXqPm8JundSJ0a138nC0m6wInD\nu/zchyMzYCpsQmBp9Ohr5OViyQKBgQC7vKNQ9jS57k5U9aaD+VkHLVdlYn8YDrq0\npW3UJ6pDvB10Sfec7VZq6hkIYtVJDhteojvYJQbKo1nLQW87D1OHqtMBHtfJu21i\n0R6pMoo4VenNENJGg3f3KUzhgVque3dIrrnwgaXJojoTdfJ2KWWVJFIlvVfOUE5v\nvO7Cc9WlUQKBgGXchbo0G1fbVT+dBd6JI0QdoPZing5rAoJZ7TIhVzXVSUpodIGj\niFmbjPazmFSbuiOlLNzXkQaxlc/A3oWl9jzuZEG8vcKKaWGnmYDgIK2LjJER+lgG\nZao9kTrPb44NqkXULUmGeznOnZ0ZP1oi65AbExYIL+ktLsBAtZtQF8MxAoGADwHy\ncEtuRZrGSkZk7FHniwpV3TX1gP/UbxJ2aCpPkyCbnis3jyTt7pgOLjxwXmmxSGxh\nqlKza0mJqRTvBmKgQ80lFwbXKzo/cVHUSKRQplY/3XPFy3tBANIdYj2L+TzHeVj2\nZkKG9UpxqBKaslV22GhR5NBxD34d9xK8Z3EJGDECgYEApbblpkXXqP2ONL9pk5IB\nJ4lc6IO6fMRIqYCE7Ub6Bdb/W85UxcXUSFMiIwtOQq1da7W/eLPC49A0v817SloZ\neNyU10kEkE4afVZ6NjYR49W5dSMrte9LYJwX25VUIlA93Hw0Y+85pI5wzaeWZNYc\nuCl2N3NZKjpq7ud2SmYUA54=\n-----END PRIVATE KEY-----\n",
+  "client_email": "my-time-manage-service-account@time-management-in-projects.iam.gserviceaccount.com",
+  "client_id": "110710820967380510622",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/my-time-manage-service-account%40time-management-in-projects.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
