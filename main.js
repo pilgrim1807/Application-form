@@ -102,7 +102,10 @@ function initFormLogic() {
   const main = document.querySelector('main');
   let triedSubmit = false;
 
-  form.onsubmit = e => {
+  // Глобально запомним исходный html main для сброса
+  const mainContent = main.innerHTML;
+
+  form.onsubmit = async e => {
     e.preventDefault();
     triedSubmit = true;
     let hasError = false;
@@ -148,36 +151,57 @@ function initFormLogic() {
       return false;
     }
 
-    // Очищаем main и показываем только сообщение
-    const mainContent = main.innerHTML;
+    // === ОТПРАВКА НА NODE.JS BACKEND ===
+    const formData = new FormData(form);
+    const fileInput = document.getElementById('catchphraseImage');
+    if (fileInput && fileInput.files[0]) {
+      formData.set('catchphraseImage', fileInput.files[0]);
+    }
+
+    // Показываем "Спасибо" и отключаем форму до ответа сервера
     main.innerHTML = `
       <div id="thankyou" class="flex flex-col items-center justify-center min-h-[350px]">
         <div class="bg-green-100 border border-green-300 rounded-xl p-6 text-green-700 text-center text-xl font-bold animate-popIn" style="max-width:450px;margin:auto;">
-          Спасибо за участие!
+          Отправляем... <span class="animate-pulse">⏳</span>
         </div>
       </div>
     `;
 
-    // Через 2 секунды возвращаем форму очищенной и сбрасываем фото
-    setTimeout(() => {
-      main.innerHTML = mainContent;
-      document.querySelectorAll('.modern-card.selected').forEach(el => el.classList.remove('selected'));
-      ['nameInput','personalityInput','logicInput'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = "";
+    try {
+      const response = await fetch('http://localhost:3000/submit', {
+        method: 'POST',
+        body: formData
       });
-      // Сброс file input и превью
-      const fileInput = document.getElementById('catchphraseImage');
-      const previewDiv = document.getElementById('catchphraseImagePreview');
-      if (fileInput) fileInput.value = '';
-      if (previewDiv) previewDiv.innerHTML = '';
-      form.reset();
-      triedSubmit = false;
-      // Повторная инициализация событий (если нужно)
-      initFormLogic();
-    }, 2000);
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (response.ok) {
+        main.innerHTML = `
+          <div id="thankyou" class="flex flex-col items-center justify-center min-h-[350px]">
+            <div class="bg-green-100 border border-green-300 rounded-xl p-6 text-green-700 text-center text-xl font-bold animate-popIn" style="max-width:450px;margin:auto;">
+              Спасибо за участие!
+            </div>
+          </div>
+        `;
+        setTimeout(() => {
+          main.innerHTML = mainContent;
+          document.querySelectorAll('.modern-card.selected').forEach(el => el.classList.remove('selected'));
+          ['nameInput','personalityInput','logicInput'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = "";
+          });
+          if (fileInput) fileInput.value = '';
+          const previewDiv = document.getElementById('catchphraseImagePreview');
+          if (previewDiv) previewDiv.innerHTML = '';
+          form.reset();
+          triedSubmit = false;
+          initFormLogic();
+        }, 2000);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        main.innerHTML = `<div class="bg-red-100 p-6 text-red-700 rounded-xl text-xl font-bold">Ошибка отправки :( Попробуйте еще раз!</div>`;
+      }
+    } catch (error) {
+      main.innerHTML = `<div class="bg-red-100 p-6 text-red-700 rounded-xl text-xl font-bold">Ошибка соединения с сервером :(</div>`;
+    }
   };
 
   // ====== Убрать ошибку после исправления (input) ======
