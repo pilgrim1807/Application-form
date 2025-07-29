@@ -233,6 +233,7 @@
   #toggleTheme.clicked {
     animation: bounceSquash 0.55s cubic-bezier(.29,1.56,.45,1.11);
   }
+
   @keyframes bounceSquash {
     0%   { transform: scale(1,1) translateY(0);}
     18%  { transform: scale(1.2,0.8) translateY(4px);}
@@ -244,5 +245,28 @@
   #toggleTheme:active {
     transform: scale(0.93,0.98);
   }
+
+  .input-error {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 2.5px #ef444443 !important;
+    animation: shake .22s;
+  }
+  .card-error {
+    border-color: #ef4444 !important;
+    background: #fee2e2 !important;
+    color: #b91c1c !important;
+    animation: shake .22s;
+  }
+  [data-theme="dark"] .card-error {
+    background: #7f1d1d !important;
+    color: #fee2e2 !important;
+  }
+  @keyframes shake {
+    10% { transform: translateX(-2px);}
+    20% { transform: translateX(2px);}
+    40% { transform: translateX(-1px);}
+    60% { transform: translateX(1px);}
+    100% { transform: translateX(0);}
+  }
   
-  
+  .shake-anim { animation: shake .22s; }
