@@ -16,7 +16,6 @@
     --hint: #be185d;
     --hint2: #f472b6;
   }
-  
   [data-theme="dark"] {
     --bg: #18181b;
     --theme-color: #27272a;
@@ -42,10 +41,8 @@
     color: var(--text);
     min-height: 100vh;
   }
-
-  .change-color{
-    background:var(--theme-color);
-  }
+  
+  .change-color { background: var(--theme-color); }
   
   /* Inputs */
   input, select, textarea {
@@ -62,7 +59,6 @@
     opacity: 1;
   }
   
-  /* Универсальный input */
   .modern-input {
     width: 100%;
     padding: 0.83rem 1.05rem;
@@ -95,30 +91,24 @@
   }
   [data-theme="dark"] .input-hint { color: var(--hint2); }
   
-  /* ====== Cards Grid: mobile-friendly, центрирование ====== */
+  /* ====== Cards Grid ====== */
   .modern-cards-grid {
     display: flex;
-    justify-content: center; /* Центрирование всех кнопок */
-    gap: 0.75rem; /* Расстояние между кнопками */
-    flex-wrap: wrap;
+    justify-content: center;
     gap: 16px;
- 
+    flex-wrap: wrap;
     align-items: stretch;
     margin-bottom: 0.5rem;
   }
   @media (min-width: 640px) { .modern-cards-grid { justify-content: flex-start; } }
   @media (max-width: 500px) { .modern-cards-grid { gap: 12px; } }
   @media (max-width: 420px) { .modern-cards-grid { flex-direction: column; gap: 10px; } }
-  .modern-cards-grid.just-2 {
-    justify-content: center;
-  }
+  .modern-cards-grid.just-2 { justify-content: center; }
   
   /* ====== Card ====== */
   .modern-card {
     flex: 1 1 120px;
     min-width: 110px;
-    flex-wrap: wrap;
-    gap: 0.75rem; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -143,32 +133,30 @@
       transform 0.22s cubic-bezier(.36,1.64,.41,.8),
       color 0.18s;
     will-change: box-shadow, transform, background, color;
-    animation: fadeInCard 0.54s cubic-bezier(.5,1.6,.43,1) backwards;
+    animation: fadeInUp .7s cubic-bezier(.36,1.4,.41,1) forwards;
     color: var(--card-color);
   }
   @media (max-width: 640px) { .modern-card { min-width: 90px; max-width: 99vw; } }
   
-  @keyframes fadeInCard {
-    from { opacity:0; transform: scale(0.94) translateY(20px); }
-    to   { opacity:1; transform: scale(1) translateY(0);}
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
-  
-  /* Анимации задержки */
-  .modern-cards-grid > .modern-card { animation-delay: 0.04s; }
-  .modern-cards-grid > .modern-card:nth-child(2) { animation-delay: 0.12s;}
-  .modern-cards-grid > .modern-card:nth-child(3) { animation-delay: 0.18s;}
-  .modern-cards-grid > .modern-card:nth-child(4) { animation-delay: 0.24s;}
-  .modern-cards-grid > .modern-card:nth-child(5) { animation-delay: 0.3s;}
-  
-  /* Card states */
-  .modern-card.selected,
-  .modern-card:focus-visible {
+  .modern-card.selected, .modern-card:focus-visible {
+    animation: cardPop .25s cubic-bezier(.36,1.4,.41,1);
     border-color: #be185d;
     box-shadow: 0 0 0 3px #f472b6cc, 0 8px 32px 0 #be185d3a;
     background: var(--card-selected-bg);
     color: var(--card-selected-color);
     transform: scale(1.045) translateY(-3px);
     z-index: 2;
+  }
+  @keyframes cardPop {
+    0% { transform: scale(1); }
+    60% { transform: scale(1.07) translateY(-2px);}
+    100% { transform: scale(1.045) translateY(-3px);}
   }
   .modern-card:hover:not(.selected),
   .modern-card:focus-visible:not(.selected) {
@@ -178,24 +166,21 @@
     z-index: 1;
     color: var(--card-hover-color);
   }
-  
-  /* Ripple effect */
   .ripple {
     position: absolute;
     border-radius: 50%;
     transform: scale(0);
-    animation: ripple 0.48s linear;
+    animation: rippleAnim 0.48s linear;
     background: rgba(236, 72, 153, 0.18);
     pointer-events: none;
     z-index: 4;
   }
-  @keyframes ripple {
+  @keyframes rippleAnim {
     to {
       transform: scale(2.4);
       opacity: 0;
     }
   }
-  
   .modern-card-icon {
     font-size: 2.3rem;
     line-height: 2.2rem;
@@ -212,9 +197,7 @@
     letter-spacing: 0.01em;
     transition: color 0.16s;
   }
-  .modern-card.selected .modern-card-label {
-    color: #be185d;
-  }
+  .modern-card.selected .modern-card-label { color: #be185d; }
   .modern-card-desc {
     color: #a1a1aa;
     font-size: 0.83rem;
@@ -223,4 +206,36 @@
     line-height: 1.1rem;
   }
   [data-theme="dark"] .modern-card-desc { color: #e0e0e0; }
+  
+  /* Ошибки и сообщение плавно */
+  .text-pink-500 {
+    opacity: 0;
+    transition: opacity .26s cubic-bezier(.36,1.4,.41,1);
+  }
+  .text-pink-500:not(.hidden) {
+    opacity: 1;
+  }
+  #result > div {
+    animation: popIn .5s cubic-bezier(.36,1.4,.41,1);
+  }
+  @keyframes popIn {
+    0% { transform: scale(.91); opacity:0; }
+    70% { transform: scale(1.06);}
+    100% { transform: scale(1); opacity:1;}
+  }
+  
+  /* Theme button animation */
+  #toggleTheme {
+    transition: transform .32s cubic-bezier(.36,1.4,.41,1);
+    cursor: pointer;
+    user-select: none;
+  }
+  #toggleTheme.clicked {
+    animation: spinScale .44s cubic-bezier(.36,1.4,.41,1);
+  }
+  @keyframes spinScale {
+    10% { transform: rotate(0) scale(1);}
+    70% { transform: rotate(220deg) scale(1.2);}
+    100% { transform: rotate(360deg) scale(1);}
+  }
   
