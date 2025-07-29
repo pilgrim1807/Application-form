@@ -1,0 +1,226 @@
+:root {
+    --bg: #fff;
+    --theme-color: #f4f4f5;
+    --text: #18181b;
+    --input-bg: #fff;
+    --input-text: #18181b;
+    --input-border: #ccc;
+    --input-placeholder: #bbb;
+    --card-bg: #f4f4f5;
+    --card-border: #eee;
+    --card-color: #18181b;
+    --card-selected-bg: #fff0fa;
+    --card-selected-color: #18181b;
+    --card-hover-bg: #fff7fa;
+    --card-hover-color: #18181b;
+    --hint: #be185d;
+    --hint2: #f472b6;
+  }
+  
+  [data-theme="dark"] {
+    --bg: #18181b;
+    --theme-color: #27272a;
+    --text: #f4f4f5;
+    --input-bg: #27272a;
+    --input-text: #f4f4f5;
+    --input-border: #444;
+    --input-placeholder: #888;
+    --card-bg: #232326;
+    --card-border: #333;
+    --card-color: #f4f4f5;
+    --card-selected-bg: #38152a;
+    --card-selected-color: #f4f4f5;
+    --card-hover-bg: #43163c;
+    --card-hover-color: #f4f4f5;
+    --hint: #f472b6;
+    --hint2: #be185d;
+  }
+  
+  /* Общий фон и текст */
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .change-color{
+    background:var(--theme-color);
+  }
+  
+  /* Inputs */
+  input, select, textarea {
+    background: var(--input-bg);
+    color: var(--input-text);
+    border: 1.5px solid var(--input-border);
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: #be185d;
+    outline: none;
+  }
+  input::placeholder, textarea::placeholder {
+    color: var(--input-placeholder);
+    opacity: 1;
+  }
+  
+  /* Универсальный input */
+  .modern-input {
+    width: 100%;
+    padding: 0.83rem 1.05rem;
+    background: var(--input-bg);
+    color: var(--input-text);
+    border-radius: 0.9rem;
+    border: 1.5px solid var(--input-border);
+    font-size: 1rem;
+    margin-bottom: 2px;
+    transition: border-color .17s, box-shadow .17s, background .18s;
+    outline: none;
+    font-family: inherit;
+    font-weight: 500;
+  }
+  .modern-input:focus {
+    border-color: #be185d;
+    box-shadow: 0 0 0 2px #be185d33;
+    background: #faf8fa;
+    color: var(--input-text);
+  }
+  
+  /* Подписи-подсказки */
+  .input-hint {
+    font-size: 0.91rem;
+    margin-top: 2px;
+    opacity: 0.76;
+    transition: opacity 0.22s;
+    display: block;
+    color: var(--hint);
+  }
+  [data-theme="dark"] .input-hint { color: var(--hint2); }
+  
+  /* ====== Cards Grid: mobile-friendly, центрирование ====== */
+  .modern-cards-grid {
+    display: flex;
+    justify-content: center; /* Центрирование всех кнопок */
+    gap: 0.75rem; /* Расстояние между кнопками */
+    flex-wrap: wrap;
+    gap: 16px;
+ 
+    align-items: stretch;
+    margin-bottom: 0.5rem;
+  }
+  @media (min-width: 640px) { .modern-cards-grid { justify-content: flex-start; } }
+  @media (max-width: 500px) { .modern-cards-grid { gap: 12px; } }
+  @media (max-width: 420px) { .modern-cards-grid { flex-direction: column; gap: 10px; } }
+  .modern-cards-grid.just-2 {
+    justify-content: center;
+  }
+  
+  /* ====== Card ====== */
+  .modern-card {
+    flex: 1 1 120px;
+    min-width: 110px;
+    flex-wrap: wrap;
+    gap: 0.75rem; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90px;
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 1.2rem;
+    padding: 20px 10px 12px 10px;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    font-family: inherit;
+    font-size: 1rem;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 2px 12px 0 #00000009;
+    transition:
+      box-shadow 0.21s cubic-bezier(.47,1.64,.41,.8),
+      border-color 0.19s,
+      background 0.21s cubic-bezier(.47,1.64,.41,.8),
+      transform 0.22s cubic-bezier(.36,1.64,.41,.8),
+      color 0.18s;
+    will-change: box-shadow, transform, background, color;
+    animation: fadeInCard 0.54s cubic-bezier(.5,1.6,.43,1) backwards;
+    color: var(--card-color);
+  }
+  @media (max-width: 640px) { .modern-card { min-width: 90px; max-width: 99vw; } }
+  
+  @keyframes fadeInCard {
+    from { opacity:0; transform: scale(0.94) translateY(20px); }
+    to   { opacity:1; transform: scale(1) translateY(0);}
+  }
+  
+  /* Анимации задержки */
+  .modern-cards-grid > .modern-card { animation-delay: 0.04s; }
+  .modern-cards-grid > .modern-card:nth-child(2) { animation-delay: 0.12s;}
+  .modern-cards-grid > .modern-card:nth-child(3) { animation-delay: 0.18s;}
+  .modern-cards-grid > .modern-card:nth-child(4) { animation-delay: 0.24s;}
+  .modern-cards-grid > .modern-card:nth-child(5) { animation-delay: 0.3s;}
+  
+  /* Card states */
+  .modern-card.selected,
+  .modern-card:focus-visible {
+    border-color: #be185d;
+    box-shadow: 0 0 0 3px #f472b6cc, 0 8px 32px 0 #be185d3a;
+    background: var(--card-selected-bg);
+    color: var(--card-selected-color);
+    transform: scale(1.045) translateY(-3px);
+    z-index: 2;
+  }
+  .modern-card:hover:not(.selected),
+  .modern-card:focus-visible:not(.selected) {
+    background: var(--card-hover-bg);
+    border-color: #f472b6;
+    transform: scale(1.025) translateY(-1.5px);
+    z-index: 1;
+    color: var(--card-hover-color);
+  }
+  
+  /* Ripple effect */
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.48s linear;
+    background: rgba(236, 72, 153, 0.18);
+    pointer-events: none;
+    z-index: 4;
+  }
+  @keyframes ripple {
+    to {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+  
+  .modern-card-icon {
+    font-size: 2.3rem;
+    line-height: 2.2rem;
+    margin-bottom: 1px;
+    transition: transform 0.18s cubic-bezier(.47,1.64,.41,.8);
+  }
+  .modern-card.selected .modern-card-icon {
+    transform: scale(1.14) rotate(-4deg);
+  }
+  .modern-card-label {
+    font-weight: bold;
+    font-size: 1.13rem;
+    margin-bottom: 0px;
+    letter-spacing: 0.01em;
+    transition: color 0.16s;
+  }
+  .modern-card.selected .modern-card-label {
+    color: #be185d;
+  }
+  .modern-card-desc {
+    color: #a1a1aa;
+    font-size: 0.83rem;
+    text-align: center;
+    margin-top: 2px;
+    line-height: 1.1rem;
+  }
+  [data-theme="dark"] .modern-card-desc { color: #e0e0e0; }
+  
