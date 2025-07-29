@@ -62,6 +62,22 @@ app.post('/submit', upload.single('catchphraseImage'), (req, res) => {
   res.json({ status: 'ok', message: 'Спасибо!', image: file ? '/uploads/' + file.filename : null });
 });
 
+// === ДОБАВЛЕНО: скачивание файла answers.csv через браузер ===
+app.get('/download-answers', (req, res) => {
+  res.download(path.join(__dirname, 'answers.csv'));
+});
+
+// === ДОБАВЛЕНО: просмотр списка загруженных файлов (картинок) ===
+app.get('/uploads-list', (req, res) => {
+  fs.readdir('uploads/', (err, files) => {
+    if (err) return res.status(500).send('Ошибка!');
+    const list = files
+      .map(file => `<a href="/uploads/${file}" target="_blank">${file}</a>`)
+      .join('<br>');
+    res.send(`<h2>Загруженные картинки:</h2>${list}`);
+  });
+});
+
 // Самое важное — отдаём index.html на корень
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
