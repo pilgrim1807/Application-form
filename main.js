@@ -168,7 +168,7 @@ function initFormLogic() {
     `;
 
     try {
-      const response = await fetch('http://localhost:3000/submit', {
+      const response = await fetch('https://application-form-cug4.onrender.com/submit', {
         method: 'POST',
         body: formData
       });
