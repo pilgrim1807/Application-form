@@ -158,7 +158,7 @@ function initFormLogic() {
       </div>
     `;
 
-    // Через 2 секунды возвращаем форму очищенной
+    // Через 2 секунды возвращаем форму очищенной и сбрасываем фото
     setTimeout(() => {
       main.innerHTML = mainContent;
       document.querySelectorAll('.modern-card.selected').forEach(el => el.classList.remove('selected'));
@@ -166,9 +166,15 @@ function initFormLogic() {
         const el = document.getElementById(id);
         if (el) el.value = "";
       });
+      // Сброс file input и превью
+      const fileInput = document.getElementById('catchphraseImage');
+      const previewDiv = document.getElementById('catchphraseImagePreview');
+      if (fileInput) fileInput.value = '';
+      if (previewDiv) previewDiv.innerHTML = '';
       form.reset();
       triedSubmit = false;
-      initFormLogic(); // повторная инициализация событий
+      // Повторная инициализация событий (если нужно)
+      initFormLogic();
     }, 2000);
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -201,52 +207,3 @@ function initFormLogic() {
 window.addEventListener('DOMContentLoaded', () => {
   initFormLogic();
 });
-
-function initImageUpload() {
-    const fileInput = document.getElementById('catchphraseImage');
-    const previewDiv = document.getElementById('catchphraseImagePreview');
-    const hintSpan = document.getElementById('catchphraseImageHint');
-    if (!fileInput || !previewDiv || !hintSpan) return;
-  
-    fileInput.addEventListener('change', function() {
-      previewDiv.innerHTML = '';
-      hintSpan.style.display = 'none';
-      const file = fileInput.files[0];
-      if (!file) return;
-  
-      // Проверка типа
-      if (!file.type.startsWith('image/')) {
-        hintSpan.textContent = 'Можно выбрать только изображение!';
-        hintSpan.style.display = 'block';
-        fileInput.value = '';
-        return;
-      }
-      // Проверка размера
-      if (file.size > 4 * 1024 * 1024) {
-        hintSpan.textContent = 'Слишком большой файл (до 4 МБ).';
-        hintSpan.style.display = 'block';
-        fileInput.value = '';
-        return;
-      }
-  
-      // Показать превью
-      const img = document.createElement('img');
-      img.className = "rounded-xl border border-gray-200 mt-1 mb-2 max-h-40";
-      img.style.maxWidth = "100%";
-      img.src = URL.createObjectURL(file);
-      previewDiv.appendChild(img);
-  
-      // Кнопка удалить
-      const delBtn = document.createElement('button');
-      delBtn.textContent = "Удалить";
-      delBtn.type = "button";
-      delBtn.className = "ml-2 px-2 py-1 rounded bg-pink-100 hover:bg-pink-200 text-pink-700 text-xs font-medium";
-      delBtn.onclick = () => {
-        fileInput.value = '';
-        previewDiv.innerHTML = '';
-        hintSpan.style.display = 'none';
-      };
-      previewDiv.appendChild(delBtn);
-    });
-  }
-  
