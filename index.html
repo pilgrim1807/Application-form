@@ -70,7 +70,7 @@
                 <div id="nameError" class="text-pink-500 text-xs mt-1 hidden">Выбери участника!</div>
             </fieldset>
 
-           
+
             <!-- 1. Общие черты -->
             <fieldset class="space-y-3 border-0 p-0">
                 <legend class="text-xl font-semibold mb-1 text-pink-400">🎭 1. Тип личности</legend>
@@ -231,8 +231,10 @@
                 </div>
             </fieldset>
 
-            <button type="submit"
-                class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-xl text-lg font-bold transition">Отправить</button>
+            <button type="submit" id="submitBtn"
+                class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-xl text-lg font-bold transition animate-pop opacity-60 cursor-not-allowed"
+                disabled>Отправить</button>
+
         </form>
         <div id="result" class="mt-6"></div>
     </main>

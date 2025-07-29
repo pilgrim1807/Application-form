@@ -78,3 +78,32 @@ form.onsubmit = e => {
   </div>`;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
+
+// ====== Disable submit if not all fields are filled ======
+const submitBtn = document.getElementById('submitBtn');
+const requiredFields = form.querySelectorAll('[required]');
+function checkFormValidity() {
+  let valid = true;
+  requiredFields.forEach(field => {
+    if (!field.value.trim()) valid = false;
+  });
+  // Для карточных радио — проверяем hidden inputs
+  if (!document.getElementById('nameInput').value) valid = false;
+  if (!document.getElementById('personalityInput').value) valid = false;
+  if (!document.getElementById('logicInput').value) valid = false;
+
+  submitBtn.disabled = !valid;
+  submitBtn.classList.toggle('opacity-60', !valid);
+  submitBtn.classList.toggle('cursor-not-allowed', !valid);
+}
+// следим за изменениями во всех полях
+requiredFields.forEach(field => {
+  field.addEventListener('input', checkFormValidity);
+  field.addEventListener('paste', checkFormValidity);
+});
+// следим за изменениями radio-групп
+['nameInput','personalityInput','logicInput'].forEach(id => {
+  document.getElementById(id).addEventListener('change', checkFormValidity);
+});
+// сразу проверка при загрузке
+window.addEventListener('DOMContentLoaded', checkFormValidity);
