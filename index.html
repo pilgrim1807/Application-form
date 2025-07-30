@@ -61,10 +61,6 @@
                         <span class="modern-card-icon">🥁</span>
                         <span class="modern-card-label">Сергей</span>
                     </button>
-                    <button type="button" class="modern-card" data-name="Настя" aria-pressed="false" tabindex="0">
-                        <span class="modern-card-icon">🎹</span>
-                        <span class="modern-card-label">Настя</span>
-                    </button>
                 </div>
                 <input type="hidden" name="name" id="nameInput" required>
                 <span class="input-hint-error text-pink-500 text-xs" id="nameHint" style="display:none;">Пожалуйста,
@@ -77,7 +73,8 @@
                 <legend class="text-xl font-semibold mb-1 text-pink-400">🎭 1. Тип личности</legend>
 
                 <label class="block font-medium mb-1" for="traits">Три слова о себе</label>
-                <input name="traits" id="traits" class="modern-input" placeholder="Спокойный, честный, добрый" required />
+                <input name="traits" id="traits" class="modern-input" placeholder="Спокойный, честный, добрый"
+                    required />
                 <span class="input-hint-error text-pink-500 text-xs" id="traitsHint" style="display:none;">Пожалуйста,
                     заполните это поле</span>
 
@@ -90,11 +87,14 @@
                     <legend class="block font-medium mb-2 text-white">Ты интроверт, экстраверт или амбиверт?</legend>
                     <div id="personalityGrid" class="modern-cards-grid" role="radiogroup" aria-label="Тип личности">
                         <button type="button" class="modern-card animate-card" data-value="Интроверт"><span
-                                class="modern-card-icon">😶</span><span class="modern-card-label">Интроверт</span></button>
+                                class="modern-card-icon">😶</span><span
+                                class="modern-card-label">Интроверт</span></button>
                         <button type="button" class="modern-card animate-card" data-value="Экстраверт"><span
-                                class="modern-card-icon">😄</span><span class="modern-card-label">Экстраверт</span></button>
+                                class="modern-card-icon">😄</span><span
+                                class="modern-card-label">Экстраверт</span></button>
                         <button type="button" class="modern-card animate-card" data-value="Амбиверт"><span
-                                class="modern-card-icon">🌓</span><span class="modern-card-label">Амбиверт</span></button>
+                                class="modern-card-icon">🌓</span><span
+                                class="modern-card-label">Амбиверт</span></button>
                     </div>
                     <input type="hidden" name="personality" id="personalityInput" required>
                     <span class="input-hint-error text-pink-500 text-xs" id="personalityHint"
@@ -113,12 +113,13 @@
                     style="display:none;">Пожалуйста, заполните это поле</span>
 
                 <fieldset class="modern-cards-fieldset border-0 p-0">
-                    <legend class="block font-medium mb-2 text-white">Ты чаще полагаешься на разум или чувства?</legend>
+                    <legend class="block font-medium mb-2">Ты чаще полагаешься на разум или чувства?</legend>
                     <div id="logicGrid" class="modern-cards-grid" role="radiogroup" aria-label="Разум или чувства">
                         <button type="button" class="modern-card animate-card" data-value="Разум"><span
                                 class="modern-card-icon">🧠</span><span class="modern-card-label">Разум</span></button>
                         <button type="button" class="modern-card animate-card" data-value="Чувства"><span
-                                class="modern-card-icon">❤️</span><span class="modern-card-label">Чувства</span></button>
+                                class="modern-card-icon">❤️</span><span
+                                class="modern-card-label">Чувства</span></button>
                     </div>
                     <input type="hidden" name="logicType" id="logicInput" required>
                     <span class="input-hint-error text-pink-500 text-xs" id="logicTypeHint"
@@ -126,18 +127,35 @@
                     <div id="logicError" class="text-pink-500 text-xs mt-1 hidden">Выбери!</div>
                 </fieldset>
 
-                <label class="block font-medium mb-1" for="priority">Что для тебя важнее: стабильность или
-                    спонтанность?</label>
-                <input name="priority" id="priority" class="modern-input" placeholder="Стабильность" required />
-                <span class="input-hint-error text-pink-500 text-xs" id="priorityHint" style="display:none;">Пожалуйста,
-                    заполните это поле</span>
+                <fieldset class="modern-cards-fieldset border-0 p-0">
+                    <legend class="block font-medium mb-2">
+                        Что для тебя важнее: стабильность или спонтанность?
+                    </legend>
+                    <div id="priorityGrid" class="modern-cards-grid" role="radiogroup"
+                        aria-label="Стабильность или Спонтанность">
+                        <button type="button" class="modern-card animate-card" data-value="Стабильность">
+                            <span class="modern-card-icon">🧩</span>
+                            <span class="modern-card-label">Стабильность</span>
+                        </button>
+                        <button type="button" class="modern-card animate-card" data-value="Спонтанность">
+                            <span class="modern-card-icon">⚡</span>
+                            <span class="modern-card-label">Спонтанность</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="priority" id="priorityInput" required>
+                    <span class="input-hint-error text-pink-500 text-xs" id="priorityHint" style="display:none;">
+                        Пожалуйста, выбери вариант
+                    </span>
+                    <div id="priorityError" class="text-pink-500 text-xs mt-1 hidden">Выбери!</div>
+                </fieldset>
 
                 <label class="block font-medium mb-1" for="admire">Что ценишь в других?</label>
                 <input name="admire" id="admire" class="modern-input" placeholder="Честность" required />
                 <span class="input-hint-error text-pink-500 text-xs" id="admireHint" style="display:none;">Пожалуйста,
                     заполните это поле</span>
 
-                <label class="block font-medium mb-1" for="movieHero">С каким персонажем ты себя ассоциируешь? Почему?</label>
+                <label class="block font-medium mb-1" for="movieHero">С каким персонажем ты себя ассоциируешь?
+                    Почему?</label>
                 <input name="movieHero" id="movieHero" class="modern-input"
                     placeholder="Шрек! Потому что он многослойный, как лук" required />
                 <span class="input-hint-error text-pink-500 text-xs" id="movieHeroHint"
@@ -149,18 +167,23 @@
                 <legend class="text-xl font-semibold mb-1 text-pink-400">🧬 2. Уникальные особенности</legend>
 
                 <label class="block font-medium mb-1" for="catchphrase">Твой любимый мем или фраза?</label>
-                <input name="catchphrase" id="catchphrase" class="modern-input" placeholder="Мем про кандибобер и афганскую войну" required />
-                <span class="input-hint-error text-pink-500 text-xs" id="catchphraseHint" style="display:none;">Пожалуйста, заполните это поле</span>
-                
+                <input name="catchphrase" id="catchphrase" class="modern-input"
+                    placeholder="Мем про кандибобер и афганскую войну" required />
+                <span class="input-hint-error text-pink-500 text-xs" id="catchphraseHint"
+                    style="display:none;">Пожалуйста, заполните это поле</span>
+
                 <div class="mt-2">
-                  <label for="catchphraseImage" class="inline-block px-4 py-2 bg-pink-100 text-pink-700 rounded-xl font-semibold cursor-pointer hover:bg-pink-200 transition">
-                    Загрузить картинку мема
-                    <input type="file" id="catchphraseImage" name="catchphraseImage" accept="image/*" class="hidden" />
-                  </label>
-                  <span id="catchphraseImageHint" class="input-hint-error text-pink-500 text-xs" style="display:none;"></span>
-                  <div id="catchphraseImagePreview"></div>
+                    <label for="catchphraseImage"
+                        class="inline-block px-4 py-2 bg-pink-100 text-pink-700 rounded-xl font-semibold cursor-pointer hover:bg-pink-200 transition">
+                        Загрузить картинку мема
+                        <input type="file" id="catchphraseImage" name="catchphraseImage" accept="image/*"
+                            class="hidden" />
+                    </label>
+                    <span id="catchphraseImageHint" class="input-hint-error text-pink-500 text-xs"
+                        style="display:none;"></span>
+                    <div id="catchphraseImagePreview"></div>
                 </div>
-                
+
                 <label class="block font-medium mb-1" for="weirdFact">Странный факт о себе</label>
                 <input name="weirdFact" id="weirdFact" class="modern-input" placeholder="Говорю с кошкой" required />
 

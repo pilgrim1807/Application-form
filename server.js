@@ -30,9 +30,12 @@ async function appendRowToSheet(row) {
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static('uploads')); // картинки по прямой ссылке, но не публикуй список!
-app.use(express.static('.')); // отдаём index.html, main.js, style.css и др.
 
+// <<< ДОЛЖНО БЫТЬ ТУТ! >>>
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); 
+app.use(express.static('.'));
+
+// Папка для загрузки файлов
 if (!fs.existsSync('uploads')) fs.mkdirSync('uploads');
 
 // ==== MULTER (загрузка файлов) ====
