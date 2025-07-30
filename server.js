@@ -6,8 +6,8 @@ const path = require('path');
 const { google } = require('googleapis');
 
 // ==== GOOGLE SHEETS ====
-const SHEET_ID = 'ТВОЙ_SHEET_ID'; // <-- ВСТАВЬ СВОЙ
-const KEY_FILE = 'gcp-key.json'; // сервисный ключ Google Cloud (скачай и положи рядом)
+const SHEET_ID = '1Gu6WolqmP6L1v7xpQhICG4pGVz1zlxPHFU7RJefbTH0';
+const KEY_FILE = 'gcp-key.json';
 
 const auth = new google.auth.GoogleAuth({
   keyFile: KEY_FILE,
