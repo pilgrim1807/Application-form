@@ -34,7 +34,7 @@
             <h1 id="form-title" class="text-3xl font-bold text-center flex-1">Анкета участников 2/5</h1>
             <button id="toggleTheme" class="transition select-none" aria-label="Переключить тему">🌙/☀️</button>
         </header>
-        <form name="bandForm" method="POST" data-netlify="true" netlify-honeypot="email" autocomplete="off" novalidate>
+        <form name="bandForm" autocomplete="off" novalidate>
             <input type="hidden" name="form-name" value="bandForm" />
 
             <!-- Выбери себя -->
@@ -72,35 +72,29 @@
                 <div id="nameError" class="text-pink-500 text-xs mt-1 hidden">Выбери участника!</div>
             </fieldset>
 
-
             <!-- 1. Общие черты -->
             <fieldset class="space-y-3 border-0 p-0">
                 <legend class="text-xl font-semibold mb-1 text-pink-400">🎭 1. Тип личности</legend>
 
                 <label class="block font-medium mb-1" for="traits">Три слова о себе</label>
-                <input name="traits" id="traits" class="modern-input" placeholder="Спокойный, честный, добрый"
-                    required />
+                <input name="traits" id="traits" class="modern-input" placeholder="Спокойный, честный, добрый" required />
                 <span class="input-hint-error text-pink-500 text-xs" id="traitsHint" style="display:none;">Пожалуйста,
                     заполните это поле</span>
 
                 <label class="block font-medium mb-1" for="superpower">Какую ты бы хотел суперспособность?</label>
                 <input name="superpower" id="superpower" class="modern-input" placeholder="Летать" required />
                 <span class="input-hint-error text-pink-500 text-xs" id="superpowerHint"
-                    style="display:none;">Пожалуйста,
-                    заполните это поле</span>
+                    style="display:none;">Пожалуйста, заполните это поле</span>
 
                 <fieldset class="modern-cards-fieldset border-0 p-0">
                     <legend class="block font-medium mb-2 text-white">Ты интроверт, экстраверт или амбиверт?</legend>
                     <div id="personalityGrid" class="modern-cards-grid" role="radiogroup" aria-label="Тип личности">
                         <button type="button" class="modern-card animate-card" data-value="Интроверт"><span
-                                class="modern-card-icon">😶</span><span
-                                class="modern-card-label">Интроверт</span></button>
+                                class="modern-card-icon">😶</span><span class="modern-card-label">Интроверт</span></button>
                         <button type="button" class="modern-card animate-card" data-value="Экстраверт"><span
-                                class="modern-card-icon">😄</span><span
-                                class="modern-card-label">Экстраверт</span></button>
+                                class="modern-card-icon">😄</span><span class="modern-card-label">Экстраверт</span></button>
                         <button type="button" class="modern-card animate-card" data-value="Амбиверт"><span
-                                class="modern-card-icon">🌓</span><span
-                                class="modern-card-label">Амбиверт</span></button>
+                                class="modern-card-icon">🌓</span><span class="modern-card-label">Амбиверт</span></button>
                     </div>
                     <input type="hidden" name="personality" id="personalityInput" required>
                     <span class="input-hint-error text-pink-500 text-xs" id="personalityHint"
@@ -111,14 +105,12 @@
                 <label class="block font-medium mb-1" for="annoyedBy">Что тебя раздражает?</label>
                 <input name="annoyedBy" id="annoyedBy" class="modern-input" placeholder="Очереди, спешка" required />
                 <span class="input-hint-error text-pink-500 text-xs" id="annoyedByHint"
-                    style="display:none;">Пожалуйста,
-                    заполните это поле</span>
+                    style="display:none;">Пожалуйста, заполните это поле</span>
 
                 <label class="block font-medium mb-1" for="inspiredBy">Что тебя вдохновляет?</label>
                 <input name="inspiredBy" id="inspiredBy" class="modern-input" placeholder="Новые идеи" required />
                 <span class="input-hint-error text-pink-500 text-xs" id="inspiredByHint"
-                    style="display:none;">Пожалуйста,
-                    заполните это поле</span>
+                    style="display:none;">Пожалуйста, заполните это поле</span>
 
                 <fieldset class="modern-cards-fieldset border-0 p-0">
                     <legend class="block font-medium mb-2 text-white">Ты чаще полагаешься на разум или чувства?</legend>
@@ -126,8 +118,7 @@
                         <button type="button" class="modern-card animate-card" data-value="Разум"><span
                                 class="modern-card-icon">🧠</span><span class="modern-card-label">Разум</span></button>
                         <button type="button" class="modern-card animate-card" data-value="Чувства"><span
-                                class="modern-card-icon">❤️</span><span
-                                class="modern-card-label">Чувства</span></button>
+                                class="modern-card-icon">❤️</span><span class="modern-card-label">Чувства</span></button>
                     </div>
                     <input type="hidden" name="logicType" id="logicInput" required>
                     <span class="input-hint-error text-pink-500 text-xs" id="logicTypeHint"
@@ -143,17 +134,14 @@
 
                 <label class="block font-medium mb-1" for="admire">Что ценишь в других?</label>
                 <input name="admire" id="admire" class="modern-input" placeholder="Честность" required />
-
                 <span class="input-hint-error text-pink-500 text-xs" id="admireHint" style="display:none;">Пожалуйста,
                     заполните это поле</span>
 
-                <label class="block font-medium mb-1" for="movieHero">С каким персонажем ты себя ассоциируешь?
-                    Почему?</label>
+                <label class="block font-medium mb-1" for="movieHero">С каким персонажем ты себя ассоциируешь? Почему?</label>
                 <input name="movieHero" id="movieHero" class="modern-input"
                     placeholder="Шрек! Потому что он многослойный, как лук" required />
                 <span class="input-hint-error text-pink-500 text-xs" id="movieHeroHint"
-                    style="display:none;">Пожалуйста,
-                    заполните это поле</span>
+                    style="display:none;">Пожалуйста, заполните это поле</span>
             </fieldset>
 
             <!-- 2. Уникальные особенности -->
@@ -179,14 +167,12 @@
                 <label class="block font-medium mb-1" for="habit">Твоя уникальная привычка</label>
                 <input name="habit" id="habit" class="modern-input" placeholder="Пою в душе" required />
                 <span class="input-hint-error text-pink-500 text-xs" id="weirdFactHint"
-                    style="display:none;">Пожалуйста,
-                    заполните это поле</span>
+                    style="display:none;">Пожалуйста, заполните это поле</span>
 
                 <label class="block font-medium mb-1" for="musicGenre">Какой ты жанр музыки?</label>
                 <input name="musicGenre" id="musicGenre" class="modern-input" placeholder="Инди-поп" required />
                 <span class="input-hint-error text-pink-500 text-xs" id="musicGenreHint"
-                    style="display:none;">Пожалуйста,
-                    заполните это поле</span>
+                    style="display:none;">Пожалуйста, заполните это поле</span>
 
                 <label class="block font-medium mb-1" for="ritual">Ритуал перед концертом?</label>
                 <input name="ritual" id="ritual" class="modern-input" placeholder="Прыгать 3 раза" required />
@@ -293,7 +279,6 @@
             </fieldset>
 
             <input type="hidden" name="form-name" value="bandForm" />
-            <!-- ... твои поля ... -->
             <button type="submit" id="submitBtn"
                 class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-xl text-lg font-bold transition animate-pop">
                 Отправить

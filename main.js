@@ -1,4 +1,4 @@
-// ====== Light/Dark Theme Toggle через data-theme ======
+// ====== Light/Dark Theme Toggle ======
 const btnTheme = document.getElementById('toggleTheme');
 btnTheme.onclick = () => {
   btnTheme.classList.add('clicked');
@@ -102,7 +102,7 @@ function initFormLogic() {
   const main = document.querySelector('main');
   let triedSubmit = false;
 
-  // Глобально запомним исходный html main для сброса
+  // Запоминаем HTML main для сброса
   const mainContent = main.innerHTML;
 
   form.onsubmit = async e => {
@@ -168,7 +168,7 @@ function initFormLogic() {
     `;
 
     try {
-      const response = await fetch('https://application-form-cug4.onrender.com/submit', {
+      const response = await fetch('/submit', {
         method: 'POST',
         body: formData
       });

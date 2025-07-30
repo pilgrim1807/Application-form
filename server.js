@@ -3,11 +3,11 @@ const multer  = require('multer');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const { google } = require('googleapis');
 
 // ==== GOOGLE SHEETS ====
-const { google } = require('googleapis');
-const SHEET_ID = '1Gu6WolqmP6L1v7xpQhICG4pGVz1zlxPHFU7RJefbTH0'; // твой ID таблицы
-const KEY_FILE = 'gcp-key.json'; // путь к ключу сервисного аккаунта
+const SHEET_ID = 'ТВОЙ_SHEET_ID'; // <-- ВСТАВЬ СВОЙ
+const KEY_FILE = 'gcp-key.json'; // сервисный ключ Google Cloud (скачай и положи рядом)
 
 const auth = new google.auth.GoogleAuth({
   keyFile: KEY_FILE,
@@ -30,11 +30,9 @@ async function appendRowToSheet(row) {
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static('uploads'));
-app.use('/img', express.static('img')); // отдаём картинки favicon и т.п.
+app.use('/uploads', express.static('uploads')); // картинки по прямой ссылке, но не публикуй список!
 app.use(express.static('.')); // отдаём index.html, main.js, style.css и др.
 
-// Гарантируем, что папка uploads есть
 if (!fs.existsSync('uploads')) fs.mkdirSync('uploads');
 
 // ==== MULTER (загрузка файлов) ====
@@ -54,8 +52,9 @@ const upload = multer({ storage: storage });
 app.post('/submit', upload.single('catchphraseImage'), async (req, res) => {
   const fields = req.body;
   const file = req.file;
-  const imgLink = file ? `https://application-form-cug4.onrender.com/uploads/${file.filename}` : '';
+  const imgLink = file ? `${req.protocol}://${req.get('host')}/uploads/${file.filename}` : '';
 
+  // Собираем все данные (добавь или убери нужные поля)
   const answers = [
     fields.name,
     fields.traits,
@@ -91,36 +90,17 @@ app.post('/submit', upload.single('catchphraseImage'), async (req, res) => {
   // Сохраняем в Google Sheets
   try {
     await appendRowToSheet(answers);
-    res.json({ status: 'ok', message: 'Спасибо!', image: imgLink });
+    res.json({ status: 'ok', message: 'Спасибо!' });
   } catch (e) {
     console.error(e);
     res.status(500).json({ status: 'error', message: 'Ошибка Google Sheets', error: e.message });
   }
 });
 
-// ==== ВСПОМОГАТЕЛЬНЫЕ РОУТЫ ====
-
-// Скачивание answers.csv
-app.get('/download-answers', (req, res) => {
-  res.download(path.join(__dirname, 'answers.csv'));
-});
-
-// Список загруженных картинок
-app.get('/uploads-list', (req, res) => {
-  fs.readdir('uploads/', (err, files) => {
-    if (err) return res.status(500).send('Ошибка!');
-    const list = files
-      .map(file => `<a href="/uploads/${file}" target="_blank">${file}</a>`)
-      .join('<br>');
-    res.send(`<h2>Загруженные картинки:</h2>${list}`);
-  });
-});
-
-// Отдаём index.html на корень (важно для single-page)
+// ==== Только отдаём index.html (без публичных списков) ====
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// ==== СТАРТ СЕРВЕРА ====
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Сервер запущен на http://localhost:${PORT}`));
