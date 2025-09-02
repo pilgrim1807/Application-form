@@ -95,6 +95,7 @@ function initFormLogic() {
   cardRadioGrid('nameGrid', 'nameInput', 'nameError');
   cardRadioGrid('personalityGrid', 'personalityInput', 'personalityError');
   cardRadioGrid('logicGrid', 'logicInput', 'logicError');
+  cardRadioGrid('priorityGrid', 'priorityInput', 'priorityError'); // добавлено!
   initImageUpload();
 
   const form = document.forms.bandForm;
@@ -127,7 +128,8 @@ function initFormLogic() {
     [
       { grid: 'nameGrid', input: 'nameInput', error: 'nameError', hint: 'Пожалуйста, заполните это поле' },
       { grid: 'personalityGrid', input: 'personalityInput', error: 'personalityError', hint: 'Пожалуйста, заполните это поле' },
-      { grid: 'logicGrid', input: 'logicInput', error: 'logicError', hint: 'Пожалуйста, заполните это поле' }
+      { grid: 'logicGrid', input: 'logicInput', error: 'logicError', hint: 'Пожалуйста, заполните это поле' },
+      { grid: 'priorityGrid', input: 'priorityInput', error: 'priorityError', hint: 'Пожалуйста, заполните это поле' } // добавлено!
     ].forEach(({ grid, input, error, hint }) => {
       const val = document.getElementById(input).value;
       const cards = document.querySelectorAll(`#${grid} .modern-card`);
@@ -184,7 +186,7 @@ function initFormLogic() {
         setTimeout(() => {
           main.innerHTML = mainContent;
           document.querySelectorAll('.modern-card.selected').forEach(el => el.classList.remove('selected'));
-          ['nameInput','personalityInput','logicInput'].forEach(id => {
+          ['nameInput','personalityInput','logicInput','priorityInput'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.value = "";
           });
@@ -217,11 +219,11 @@ function initFormLogic() {
   });
 
   // ====== Убрать ошибку после выбора карточки ======
-  ['nameGrid','personalityGrid','logicGrid'].forEach((gridId, i) => {
+  ['nameGrid','personalityGrid','logicGrid','priorityGrid'].forEach((gridId, i) => {
     document.getElementById(gridId).addEventListener('click', () => {
       if (!triedSubmit) return;
       document.querySelectorAll(`#${gridId} .modern-card`).forEach(card => card.classList.remove('card-error'));
-      let errDiv = document.getElementById(['nameError','personalityError','logicError'][i]);
+      let errDiv = document.getElementById(['nameError','personalityError','logicError','priorityError'][i]);
       if (errDiv) errDiv.style.display = 'none';
     });
   });

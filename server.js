@@ -6,8 +6,8 @@ const path = require('path');
 const { google } = require('googleapis');
 
 // ==== GOOGLE SHEETS ====
-const SHEET_ID = 'ТВОЙ_SHEET_ID'; // <-- ВСТАВЬ СВОЙ
-const KEY_FILE = 'gcp-key.json'; // сервисный ключ Google Cloud (скачай и положи рядом)
+const SHEET_ID = '1Gu6WolqmP6L1v7xpQhICG4pGVz1zlxPHFU7RJefbTH0';
+const KEY_FILE = 'gcp-key.json';
 
 const auth = new google.auth.GoogleAuth({
   keyFile: KEY_FILE,
@@ -30,9 +30,12 @@ async function appendRowToSheet(row) {
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static('uploads')); // картинки по прямой ссылке, но не публикуй список!
-app.use(express.static('.')); // отдаём index.html, main.js, style.css и др.
 
+// <<< ДОЛЖНО БЫТЬ ТУТ! >>>
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); 
+app.use(express.static('.'));
+
+// Папка для загрузки файлов
 if (!fs.existsSync('uploads')) fs.mkdirSync('uploads');
 
 // ==== MULTER (загрузка файлов) ====
